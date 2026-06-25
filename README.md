@@ -4,6 +4,14 @@
 
 ## 快速開始
 
+一般使用者最簡單的方式：直接雙擊 [start.bat](start.bat)（背後會呼叫 [start.ps1](start.ps1)）。
+
+- 第一次執行會自動偵測並安裝套件（需先安裝好 [Node.js](https://nodejs.org/)），之後每次執行都會直接啟動。
+- 啟動完成後會自動開啟瀏覽器並導向 `http://localhost:5173`。
+- 關閉跳出的視窗，或在視窗中按 `Ctrl+C`，即可停止伺服器。
+
+如果要用終端機手動操作（例如要開發、除錯）：
+
 ```bash
 npm install
 npm run dev
