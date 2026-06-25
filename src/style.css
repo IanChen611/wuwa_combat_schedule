@@ -114,7 +114,7 @@ body {
 
 .rotation-row {
   display: grid;
-  grid-template-columns: 28px 36px 220px 420px 1fr 110px;
+  grid-template-columns: 28px 36px 170px 500px 1fr 110px;
   gap: 8px;
   align-items: center;
   padding: 8px 12px;
