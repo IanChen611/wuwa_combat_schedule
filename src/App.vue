@@ -95,12 +95,14 @@ const sequenceItems = computed(() => {
       const c = characters.value.find((x) => x.id === r.characterId)
       const showAvatar = r.characterId !== lastCharacterId
       lastCharacterId = r.characterId
+      const isNumComment = /^\*\d+$/.test(r.comment?.trim() || '')
       return {
         rowId: r.rowId,
         avatar: c?.icon || '',
         name: c?.name || '',
         actionIcon: c?.actionIcons?.[r.action] || ACTION_ICONS[r.action] || '',
         actionText: actionLabel(r) || '',
+        comment: !isNumComment && r.comment ? r.comment : '',
         showAvatar
       }
     })
@@ -219,13 +221,17 @@ function onImportFile(e) {
       <div class="sequence-strip">
         <template v-for="(item, i) in sequenceItems" :key="item.rowId">
           <div class="sequence-item" :title="`${item.name || '未選角色'} - ${item.actionText || '未設定動作'}`">
-            <template v-if="item.showAvatar">
-              <img v-if="item.avatar" :src="item.avatar" class="char-avatar" />
-              <span v-else class="char-avatar placeholder">?</span>
-            </template>
-            <div class="sequence-action">
-              <img v-if="item.actionIcon" :src="item.actionIcon" class="sequence-action-icon" />
-              <span class="sequence-action-text">{{ item.actionText || '?' }}</span>
+            <div class="sequence-main">
+              <template v-if="item.showAvatar">
+                <img v-if="item.avatar" :src="item.avatar" class="char-avatar" />
+                <span v-else class="char-avatar placeholder">?</span>
+              </template>
+              <div class="sequence-action">
+                <img v-if="item.actionIcon" :src="item.actionIcon" class="sequence-action-icon" />
+                <span class="sequence-action-text"
+                  >{{ item.actionText || '?' }}<span v-if="item.comment" class="sequence-comment">({{ item.comment }})</span></span
+                >
+              </div>
             </div>
           </div>
           <span v-if="i < sequenceItems.length - 1" class="sequence-arrow">▶</span>

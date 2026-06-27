@@ -496,6 +496,18 @@ body {
   gap: 6px;
 }
 
+.sequence-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sequence-comment {
+  margin-left: 4px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
 .sequence-action {
   display: flex;
   align-items: center;
